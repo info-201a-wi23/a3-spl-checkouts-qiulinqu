@@ -1,86 +1,78 @@
 ---
-title: "A3: SPL Library Checkouts"
-output: html_document
+title: 'A3: SPL Library Checkouts'
+output:
+  html_document: default
+  pdf_document: default
 ---
+
+library("dplyr")
+library("stringr")
+library("ggplot2")
+library('tidyverse')
+
+
+spl_df <- read.csv("~/Desktop/2022-2023-All-Checkouts-SPL-Data.csv", stringsAsFactors = FALSE)
 
 ### Introduction
 
-An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
+This dataset presents monthly checkout data for the Seattle Public Library by physical and electronic item title from the beginning of 2022 through January 2023. I chose to analyze the monthly checkout data for the least and most checked out books 'A" is for alibi / Sue Grafton', 'Headphones / Seattle Public Library' by month to show the changing trends in people's preferences for different books (most and least liked). I also chose three more mainstream forms of material: books, e-books, and videos to analyze to see how people check out for these three  forms (which materials people are more likely and less likely to buy).
+
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
-These will likely be calculated using your DPLYR skills, answering questions such as:
-
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
-
-Feel free to calculate and report values that you find relevant.
+The average number of checkouts per book at Seattle Central Library from 2022 to January 2023 was 3.335852, with people most willing to spend money on the physical book 'Headphones' with an average of 1,627.308 checkouts per month. The month in which people bought the most copies of this book was January 2023, and people purchased this book at the Seattle Public Library a total of 21,155 times. The books that people are least likely to buy include many books, such as '"A" is for alibi', with an average of one checkout per month.
+```{r, echo = FALSE, warning = FALSE, message = F, code = readLines("summary.R")}
+```
 
 ### The Dataset
 
-- Who collected/published the data?  
+- Who collected or published the data? 
+  
+  The data were collected and published by the Seattle Public Library, and the data owner is SPL.
+
 - What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
+  
+  The parameters include usage class(physical or digital), checkout type, material type(type of book or knowledge), checkout month and year when the checkout was made, checkout amounts, book title, ISBN, writer, subjects of the book, publisher and publication year.
+
 - How was the data collected or generated?  
+  
+  These checkout data sets were from current and historical sources, for example for digital items, the data sets were from the media vendors : Overdrive, hoopla, Freegal, and RBDigital provide usage data.
+For historical physical item checkouts, the source is the Horizon ILS.
+
 - Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
+  
+  These data are aggregated for the purpose of recording the history of publication checkouts. These data records were created for the purpose of analyzing the circulation of publications in the Seattle Public Library during 2022-2023, and predict any possible future consumption trend of specific type of publication.
+
+- What, if any, ethical questions do you need to consider when working with this data?
+  
+  Was the data collected and published with the consent of publishers and authors? To what extent should this data be publicly displayed to people? How can we ensure that this data is not used for malicious purposes?
+  
+  
 - What are possible limitations or problems with this data?   (at least 200 words)
+
+  Is it possible that the release of this data could lead people to purchase trends? For example, does it lead people to buy publications that are purchased in high volumes and ignore those that are purchased in low volumes? Does the data attempt to compare different categories to identify good and bad categories? A potential limitation is that these data only collect books in circulation within a certain range (just the US or Washington State and no foreign book circulation data), and most of the books people buy are books that people can read or are popular, so most foreign language books and books that are not popular are probably purchased in very small quantities. This also represents a degree to which these data are not representative of anything, as there is usually a concentrated trend in consumption in a region. And these data collect only two years 2022-2023 of book purchase data and are not representative of past book purchase trends.
+
 
 
 ### First Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, warning = FALSE, code = readLines("chart1_example.R")}
+```{r, echo = FALSE, warning = FALSE, message = F, code = readLines("chart1_example.R")}
 ```
+
+I chose these four books 'Headphones' and '"A" is for alibi' to show the distribution of people's purchases and how big people's biggest purchases are. The data shows a huge difference in people's purchasing power, as people's favorite book 'Headphones' is purchased almost 1000-2000 times more per month than the other least purchased book. This demonstrates a tendency for people to concentrate their purchases on certain books, possibly due to marketing. The trend of people buying the most purchased book/favorite book 'Headphones' and one of the least purchased books '"A" is for alibi' varies very much over time. The average monthly purchase volume for 'Headphones' almost tripled from 2022 to 2023, while the average monthly purchase volume for people buying '"A" is for alibi' was stable at 1.
+
 
 ### Second Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+```{r, echo = F, warning = FALSE, message = F, code = readLines("chart2_example.R")}
 ```
+
+I chose to analyze the popularity of mainstream book materials in the form of e-books, books, audiobooks, sounddisc, and videos / as reflected by the number of checkouts to see which form of books people are most willing to pay for. The survey shows that people are most willing to pay for audiobook, followed by e-book, followed by book, while people are least willing to pay for sounddisc and video. The reason for this may be that audiobooks are not expensive so people will pay for them. And video and sounddisc are possible to find for free on the internet, so people are not willing to pay. It is also possible that people will pay for audio books because they are very convenient to read and listen to. To my surprise, people pay for audiobooks almost 5 times more often than they do for videos, which reflects the large number of audiobooks and their popularity. Overall, people's spending habits don't change much from 2022 to 2023, as each item seems to fluctuate little. The biggest fluctuation is in the consumption of audio books, but overall from 2022 to 2023 people's consumption of audio books increased by 0.5 books per month.
 
 ### Your Choice
 
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
-
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+```{r, echo = F, warning = FALSE, message = F, code = readLines("chart-3.R")}
 ```
 
+With this graph, I want to see the trend of people's purchases of all Seattle Public Library publications in 2022 and 2023. Overall, people's purchases of volume fluctuates a lot. People purchased the least in February and April of 2022, at 650K/month. But then the number of purchases made by people overall increased. Finally, in January 2023, people's purchases rose to 800K books per month.
 
